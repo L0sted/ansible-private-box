@@ -1,0 +1,23 @@
+---
+- name: install wg packages
+  apt: 
+    name: ['wireguard','wireguard-tools']
+    state: present
+
+- name: install wg hub config
+  template:
+    src: templates/wghub.conf.j2
+    dest: /etc/wireguard/wghub.conf
+
+- name: enable and persist ip forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    sysctl_set: yes
+    reload: yes
+- name: start and enable wireguard
+  systemd:
+    name: wg-quick@wghub
+    enabled: yes
+    state: started

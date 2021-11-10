@@ -1,0 +1,14 @@
+---
+- name: Install docker
+  apt:
+    name: ['docker.io', 'docker-compose']
+    state: present
+    update_cache: yes
+- name: Run mtproto container
+  community.docker.docker_container:
+    name: mtproto-telegram
+    state: present
+    image: telegrammessenger/proxy
+    ports:
+      - '443:443'
+

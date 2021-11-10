@@ -1,0 +1,11 @@
+---
+- hosts: vpns
+  roles:
+    - docker
+    - wireguard
+    - openvpn
+    - nyancat
+  vars:
+    wg_pubkey: PHww02NctXHyNM8Jf/n/QzhL07VXbFYxuUsq6OAXHFc=
+    wg_privkey: uDUNwltNneDXvurpw/yZGpTfL+Vfcp7GX6BmOFbNBXg=
+    wg_port: 40124
